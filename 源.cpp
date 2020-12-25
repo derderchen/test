@@ -1,79 +1,72 @@
-#include"game.h"
+#include<stdio.h>
 
-void game()
+typedef struct user
 {
-	char x = 0;
-	char board[ROW][COL] = { 0 };
-	initboard(board, ROW, COL);//初始化
-	displayboard(board, ROW, COL);//打印棋盘
-	while (1)
-	{
-		playermove(board, ROW, COL);//玩家下棋
-		displayboard(board, ROW, COL);
-		x = judgewin(board, ROW, COL); 
-		if (x != 'C')
-		{
-			break;
-		}
-		computermove(board, ROW, COL);//电脑下棋
-		displayboard(board, ROW, COL);
-		x = judgewin(board, ROW, COL);//判断输赢
-		if (x != 'C')
-		{
-			break;
-		}
-	}
-	if (x == '#')
-	{
-		printf("玩家胜利\n");
-	}
-	else if (x == '*')
-	{
-		printf("电脑胜利\n");
-	}
-	else
-	{
-		printf("平局\n");
-	}
+	char name[20];
+	char idcard[20];
+	char tele[20];
+	float tall;
+	int age;
+	float weight;
+	char sex[3];
+}user;
+
+void user_define(user* p)
+{
+	printf("姓名：");
+	scanf("%s", &p->name);
+	printf("身份证号码：");
+	scanf("%s", &p->idcard);
+	printf("电话：");
+	scanf("%s", &p->tele);
+	printf("身高：");
+	scanf("%f", &p->tall);
+	printf("体重（kg）：");
+	scanf("%f", &p->weight);
+	printf("年龄：");
+	scanf("%d", &p->age);
+	printf("性别：");
+	scanf("%s", &p->sex);
 }
 
-
-void menu()
+void user_printf(user* p)
 {
-	srand((unsigned int)time(NULL));
-	do
-	{
-		int input = 0;
-		printf("##################################\n");
-		printf("######  1.paly     0.exit  #######\n");
-		printf("##################################\n");
-		printf("请选择：\n");
-		scanf("%d", &input);
-		switch (input)
-		{
-		case 1:
-			game();
-			break;
-		case 0:
-			break;
-		default:
-			printf("选择无效，请重新选择\n");
-			break;
-		}
-		if (input == 0)
-		{
-			printf("退出游戏\n");
-			break;
-		}
+	printf("\n\n\n");
+	printf("姓名：%s\t", p->name);
+	printf("年龄：%d\t", p->age);
+	printf("性别：%s\t", p->sex);
+	printf("电话：%s\t", p->tele);
+	printf("身份证号码：%s\n", p->idcard);
+	printf("身高（kg）：%f\t", p->tall);
+	printf("体重：%f\t", p->weight);
+}
 
-	}while (1);
-	
+int main()
+{
+	user one;
+	user_define(&one);
+	user_printf(&one);
+	return 0;
 }
 
 
 
-	int main()
-	{
-		menu();
-		return 0;
-	}
+//typedef struct m
+//{
+//	int a;
+//	int b;
+//}m;
+//
+//void print(m* p)
+//{
+//	printf("%d\n", p->a);
+//	printf("%d\n", p->b);
+// }
+//
+//int main()
+//{
+//	m s = { 1,2 };
+//	print(&s);
+//	return 0;
+//}
+
